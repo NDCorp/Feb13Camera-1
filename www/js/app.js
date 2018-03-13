@@ -20,8 +20,13 @@ $scope.model = {};
   $scope.takePhoto = function(){
     alert("Taking photo");
     navigator.camera.getPicture(function(imageData){
-      alert(imageData);
-      $scope.model.imageSource = imageData.imageSource;
+      //alert(imageData);
+      $http.get(imageData).then(function(oData) {
+        alert(oData);
+      });
+
+      $scope.model.imageSource = imageData;
+      $scope.$apply();
     }, 
     function(message){
       console.log(message);
